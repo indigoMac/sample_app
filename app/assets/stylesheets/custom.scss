@@ -80,6 +80,12 @@ h1, h2, h3, h4, h5, h6 {
     }
   }
 
+  /* Dropdown menu */
+
+.dropdown-menu.active {
+  display: block;
+}
+
 
   /* footer */
 
@@ -106,6 +112,24 @@ h1, h2, h3, h4, h5, h6 {
       }
     }
   }
+
+@media (max-width: 800px) {
+  footer {
+    small {
+      display: block;
+      float: none;
+      margin-bottom: 1em;
+    }
+    ul {
+      float: none;
+      padding: 0;
+      li {
+        float: none;
+        margin-left: 0;
+      }
+    }
+  }
+}
 
 
   /* miscellaneous */
@@ -181,3 +205,4 @@ input {
     color: $state-danger-text;
   }
 }
+
