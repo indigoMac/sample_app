@@ -169,10 +169,7 @@ aside {
   }
 }
 
-.gravatar {
-  float: left;
-  margin-right: 10px;
-}
+
 
 .gravatar_edit {
   margin-top: 15px;
@@ -220,3 +217,31 @@ input {
   margin-left: 0;
 }
 
+
+/* Users index */
+
+.users {
+  list-style: none;
+  margin: 0;
+  padding-left: 0; // Ensure there's no padding on the left side of the list
+
+  li {
+    display: flex; // Use flexbox for layout
+    align-items: center; // Align items vertically in the center
+    padding: 10px 0;
+    border-bottom: 1px solid $gray-lighter;
+  }
+}
+
+.gravatar {
+  width: 50px; // Specify the width of the gravatar
+  height: 50px; // Specify the height of the gravatar
+  margin-right: 10px;
+}
+
+/* Ensure the gravatar images do not exceed their container */
+.gravatar img {
+  max-width: 100%;
+  height: auto;
+  display: block; // This makes the image a block-level element, which can help with spacing
+}
