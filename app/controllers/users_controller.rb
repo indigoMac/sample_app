@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def new
-    Rails.logger.info "CSRF Token from session: #{form_authenticity_token}"
+    #Rails.logger.info "CSRF Token from session: #{form_authenticity_token}"
     @user = User.new
     
   end
