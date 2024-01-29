@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "mcox@indigolighthouse.com"
+  default from: "user@realdomain.com"
   layout "mailer"
 end
