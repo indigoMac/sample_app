@@ -1,11 +1,15 @@
 class ApplicationController < ActionController::Base
     include SessionsHelper
 
-    after_action :log_headers
 
     private
 
-    def log_headers
-        Rails.logger.debug "Response headers: #{response.headers.inspect}"
+    # Confirms a logged-in user.
+    def logged_in_user
+      unless logged_in?
+        store_location
+        flash[:danger] = "Please log in."
+        redirect_to login_url, status: :see_other
+      end
     end
 end
