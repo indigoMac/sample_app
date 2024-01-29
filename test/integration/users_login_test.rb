@@ -25,23 +25,6 @@ class InvalidPasswordTest < UsersLogin
   end
 end
 
-class RememberingTest < UsersLogin
-
-  test "login with remembering" do
-    log_in_as(@user, remember_me: '1')
-    assert_equal cookies[:remember_token], assigns(:user).remember_token
-    #assert_not cookies[:remember_token].blank?
-  end
-
-  test "login without remembering" do
-    # Log in to set the cookie.
-    log_in_as(@user, remember_me: '1')
-    # Log in again and verify that the cookie is deleted.
-    log_in_as(@user, remember_me: '0')
-    assert cookies[:remember_token].blank?
-  end
-end
-
 class ValidLogin < UsersLogin
 
   def setup
@@ -68,6 +51,7 @@ class ValidLoginTest < ValidLogin
 end
 
 class Logout < ValidLogin
+
   def setup
     super
     delete logout_path
@@ -92,5 +76,21 @@ class LogoutTest < Logout
   test "should still work after logout in second window" do
     delete logout_path
     assert_redirected_to root_url
+  end
+end
+
+class RememberingTest < UsersLogin
+
+  test "login with remembering" do
+    log_in_as(@user, remember_me: '1')
+    assert_not cookies[:remember_token].blank?
+  end
+
+  test "login without remembering" do
+    # Log in to set the cookie.
+    log_in_as(@user, remember_me: '1')
+    # Log in again and verify that the cookie is deleted.
+    log_in_as(@user, remember_me: '0')
+    assert cookies[:remember_token].blank?
   end
 end

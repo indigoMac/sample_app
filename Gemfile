@@ -18,7 +18,7 @@ gem "importmap-rails",            "2.0.1"
 gem "turbo-rails",                "1.5.0"
 gem "stimulus-rails",             "1.3.3"
 gem "jbuilder",                   "2.11.5"
-gem "puma",                       "5.6.4"
+gem "puma",                       ">= 5.0"
 gem "bootsnap",                   "1.12.0", require: false
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
