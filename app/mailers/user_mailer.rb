@@ -9,7 +9,9 @@ class UserMailer < ApplicationMailer
     #@greeting = "Hi"
     #mail to: "to@example.org"
     @user = user
-    mail to: user.email, subject: "Account activation"
+    #mail to: user.email, subject: "Account activation"
+    @activation_link = edit_account_activation_url(@user.activation_token, email: @user.email)
+    Rails.logger.info "Activation link: #{@activation_link}"
   end
 
   # Subject can be set in your I18n file at config/locales/en.yml
