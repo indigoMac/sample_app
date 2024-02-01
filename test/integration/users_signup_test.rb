@@ -29,7 +29,7 @@ class UsersSignupTest < UsersSignup
                                          password:              "password",
                                          password_confirmation: "password" } }
     end
-    assert_equal 1, ActionMailer::Base.deliveries.size
+    assert_equal 2, ActionMailer::Base.deliveries.size
   end
 end
 
