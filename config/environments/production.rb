@@ -75,18 +75,21 @@ Rails.application.configure do
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true # It's useful to enable this in production after you've done initial testing to catch any errors.
   config.action_mailer.delivery_method = :smtp
-  host = 'mysterious-ridge-80883.herokuapp.com'
-  config.action_mailer.default_url_options = { host: host }
+  host = 'www.mysterious-ridge.com' # Use your custom verified domain here
+  config.action_mailer.default_url_options = { host: host, protocol: 'https' } # Assuming you have SSL setup for your custom domain
+
   ActionMailer::Base.smtp_settings = {
-    :port           => ENV['MAILGUN_SMTP_PORT'],
-    :address        => ENV['MAILGUN_SMTP_SERVER'],
-    :user_name      => ENV['MAILGUN_SMTP_LOGIN'],
-    :password       => ENV['MAILGUN_SMTP_PASSWORD'],
-    :domain         => 'mysterious-ridge-80883.herokuapp.com',
+    :port           => ENV['MAILGUN_SMTP_PORT'] || '587', # Fallback to default port 587 if the environment variable is not set
+    :address        => ENV['MAILGUN_SMTP_SERVER'] || 'smtp.mailgun.org', # Fallback to default server if the environment variable is not set
+    :user_name      => ENV['MAILGUN_SMTP_LOGIN'], # Your Mailgun SMTP login
+    :password       => ENV['MAILGUN_SMTP_PASSWORD'], # Your Mailgun SMTP password
+    :domain         => host, # Use the custom domain here
     :authentication => :plain,
+    :enable_starttls_auto => true # It's a good practice to enable TLS
   }
+
   #ActionMailer::Base.smtp_settings = {
   #  :address        => 'smtp.sendgrid.net',
   #  :port           => '587',
